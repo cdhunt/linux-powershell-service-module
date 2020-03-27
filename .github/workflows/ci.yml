@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on:
+      stragegy:
+      matric:
+        os: [ubuntu-latest, ubuntu-16.04]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run get-Service
+      run: |
+        Import-Module ./src/LinuxServiceModule.psd1
+        Get-Service
+      shell: pwsh
+    - name: Run get-Service -Name 
+      run: |
+        Import-Module ./src/LinuxServiceModule.psd1
+        Get-Service -Name cron
+      shell: pwsh      
+
